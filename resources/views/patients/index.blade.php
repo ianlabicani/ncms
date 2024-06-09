@@ -89,19 +89,34 @@
 @section('content')
 
     <body>
-        <div class="d-flex justify-content-between align-items-center mb-3">
-            <form method="GET" action="{{ route('patients.index') }}" class="form-inline mb-2">
-                <div class="form-group">
-                    <label for="filter_date">Filter by Date:</label>
-                    <input type="date" id="filter_date" name="filter_date" class="form-control mx-sm-2">
-                </div>
-                <button type="submit" class="btn btn-primary">Filter</button>
-            </form>
+        <div class="d-flex justify-content-between align-items-center">
+            <div class="d-flex justify-content-between align-items-center mb-3 gap-2">
+                <form method="GET" action="{{ route('patients.index') }}" class="form-inline mb-2">
+                    <div class="form-group">
+                        <label for="filter_date">Filter by Date:</label>
+                        <input type="date" id="filter_date" name="filter_date" class="form-control mx-sm-2">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Filter</button>
+                </form>
 
-            <form method="GET" action="{{ route('patients.index') }}" class="form-inline">
-                <input type="hidden" name="filter_date" value="{{ \Carbon\Carbon::today()->toDateString() }}">
-                <button type="submit" class="btn btn-success">Todays Patients</button>
-            </form>
+                <form method="GET" action="{{ route('patients.index') }}" class="form-inline">
+                    <input type="hidden" name="filter_date" value="{{ \Carbon\Carbon::today()->toDateString() }}">
+                    <button type="submit" class="btn btn-success">Todays Patients</button>
+                </form>
+            </div>
+
+            <div class="d-flex justify-content-between align-items-right mb-3 gap-2">
+                <form method="GET" action="{{ route('patient.excel-record') }}" class="form-inline">
+                    <button type="submit" class="btn btn-success">Export Excel</button>
+                </form>
+
+                <form method="GET" action="{{ route('patient.pdf-record') }}" class="form-inline">
+                    <button type="submit" class="btn btn-danger">Export Pdf</button>
+                </form>
+
+
+
+            </div>
         </div>
         <table class="table table-bordered">
             <thead>
