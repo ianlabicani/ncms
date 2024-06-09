@@ -10,12 +10,21 @@ class PatientController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
-        return view('patients.index', [
-            'patients' => Patient::all()
-        ]);
+        $query = Patient::query();
+
+        // Check if 'filter_date' is present in the request
+        if ($request->has('filter_date')) {
+            $filterDate = $request->input('filter_date');
+            $query->whereDate('registration_date', $filterDate);
+        }
+
+        // Get the filtered or non-filtered list of patients
+        $patients = $query->get();
+
+        // Pass the patients list to the view
+        return view('patients.index', compact('patients'));
     }
 
     /**
