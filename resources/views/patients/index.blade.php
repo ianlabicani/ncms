@@ -91,32 +91,39 @@
     <body>
         <div class="d-flex justify-content-between align-items-center">
             <div class="d-flex justify-content-between align-items-center mb-3 gap-2">
-                <form method="GET" action="{{ route('patients.index') }}" class="form-inline mb-2">
-                    <div class="form-group">
-                        <label for="filter_date">Filter by Date:</label>
-                        <input type="date" id="filter_date" name="filter_date" class="form-control mx-sm-2">
-                    </div>
-                    <button type="submit" class="btn btn-primary">Filter</button>
-                </form>
+            <form method="GET" action="{{ route('patients.index') }}" class="form-inline mb-2">
+                <div class="form-group">
+                <label for="filter_date">Filter by Date:</label>
+                <input type="date" id="filter_date" name="filter_date" class="form-control mx-sm-2">
+                </div>
+                <button type="submit" class="btn btn-primary">Filter</button>
+            </form>
 
-                <form method="GET" action="{{ route('patients.index') }}" class="form-inline">
-                    <input type="hidden" name="filter_date" value="{{ \Carbon\Carbon::today()->toDateString() }}">
-                    <button type="submit" class="btn btn-success">Todays Patients</button>
-                </form>
+            <form method="GET" action="{{ route('patients.index') }}" class="form-inline">
+                <input type="hidden" name="filter_date" value="{{ \Carbon\Carbon::today()->toDateString() }}">
+                <button type="submit" class="btn btn-success">Todays Patients</button>
+            </form>
             </div>
 
             <div class="d-flex justify-content-between align-items-right mb-3 gap-2">
-                <form method="GET" action="{{ route('patient.excel-record') }}" class="form-inline">
-                    <button type="submit" class="btn btn-success">Export Excel</button>
-                </form>
+            <form method="GET" action="{{ route('patient.excel-record') }}" class="form-inline"></form>
+                <button type="submit" class="btn btn-success">Export Excel</button>
+            </form>
 
-                <form method="GET" action="{{ route('patient.pdf-record') }}" class="form-inline">
-                    <button type="submit" class="btn btn-danger">Export Pdf</button>
-                </form>
-
-
-
+            <form method="GET" action="{{ route('patient.pdf-record') }}" class="form-inline">
+                <button type="submit" class="btn btn-danger">Export Pdf</button>
+            </form>
             </div>
+        </div>
+
+        <div class="d-flex justify-content-end mb-3">
+            <form method="GET" action="{{ route('patients.index') }}" class="form-inline">
+                <div class="form-group">
+                    <label for="search_name">Search by Name:</label>
+                    <input type="text" id="lastname" name="search_name" value="{{ old('search_name') }}" ="form-control mx-sm-2">
+                </div>
+            <button type="submit" class="btn btn-primary">Search</button>
+            </form>
         </div>
         <table class="table table-bordered">
             <thead>
@@ -133,7 +140,20 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($patients as $patient)
+                <!-- Patients List -->
+                <h1>Patients List</h1>
+                @if ($patients->isEmpty())
+
+                <tr>
+                    <td colspan="9">
+                        <div class="h1 text-center alert alert-warning">
+                        {{ $noRecordsMessage }}
+                        </div>
+                    </td>
+                </tr>
+                </tr>
+                    @else
+                    @foreach ($patients as $patient)
                     <tr>
                         <td>{{ $patient->first_name }}</td>
                         <td>{{ $patient->last_name }}</td>
@@ -148,7 +168,8 @@
                                     class="fa-solid fa-pen-to-square fa-lg text-primary"></i></a>
                         </td>
                     </tr>
-                @endforeach
+                    @endforeach
+                @endif
             </tbody>
         </table>
     </body>
