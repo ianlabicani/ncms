@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Patient;
+use Illuminate\Http\Request;
 
 class PatientController extends Controller
 {
@@ -27,20 +27,35 @@ class PatientController extends Controller
         return view('patients.index', compact('patients'));
     }
 
+
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        //
+        return view ('patient.add-patient');
     }
 
     /**
      * Store a newly created resource in storage.
      */
+
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'date_of_birth' => 'required|date',
+            'gender' => 'required|string',
+            'contact_number' => 'required|string|max:15',
+            'email' => 'required|string|email|max:255',
+            'address' => 'required|string|max:255',
+            'registration_date' => 'required|date',
+        ]);
+
+        Patient::create($validated);
+
+        return redirect()->route('patient.form')->with('success', 'Patient created successfully!');
     }
 
     /**
