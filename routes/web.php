@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\ChangePasswordController;
 use App\Http\Controllers\PatientController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -32,11 +33,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/patients', [PatientController::class, 'index'])->name('patients.index');
     Route::post('/add-patient', [PatientController::class, 'store'])->name('add.patient');
     Route::get('/show-patient-form', [PatientController::class, 'create'])->name('patient.form');
+    Route::get('/patients/{patient}/edit', [PatientController::class, 'edit'])->name('patients.edit');
+    Route::put('/patients/{patient}', [PatientController::class, 'update'])->name('patients.update');
 
-
-
-Route::get('/patients/{patient}/edit', [PatientController::class, 'edit'])->name('patients.edit');
-Route::put('/patients/{patient}', [PatientController::class, 'update'])->name('patients.update');
-
+    Route::get('/profile/change-password', [ChangePasswordController::class, 'showChangePasswordForm'])->name('profile.changePasswordForm');
+    Route::post('/profile/change-password', [ChangePasswordController::class, 'changePassword'])->name('profile.changePassword');
 });
 
