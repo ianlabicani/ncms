@@ -5,6 +5,20 @@
 
 @section('content_header')
     <h1>Patients</h1>
+    <div class="filter-actions-container flex">
+        <form method="GET" action="{{ route('patients.index') }}" class="form-inline mb-2">
+            <div class="form-group">
+                <label for="filter_date">Filter by Date:</label>
+                <input type="date" id="filter_date" name="filter_date" class="form-control mx-sm-2">
+            </div>
+            <button type="submit" class="btn btn-primary">Filter</button>
+        </form>
+
+        <form method="GET" action="{{ route('patients.index') }}" class="form-inline">
+            <input type="hidden" name="filter_date" value="{{ \Carbon\Carbon::today()->toDateString() }}">
+            <button type="submit" class="btn btn-secondary">Today's Patients</button>
+        </form>
+    </div>
 @stop
 
 @section('content')
