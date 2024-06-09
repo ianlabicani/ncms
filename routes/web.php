@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PatientController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -21,4 +22,12 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/patients', [App\Http\Controllers\PatientController::class, 'index'])->name('patients.index');
+
+
+
+Route::middleware('auth')->group(function () {
+    Route::get('/patients', [PatientController::class, 'index'])->name('patients.index');
+    Route::post('/add-patient', [PatientController::class, 'store'])->name('add.patient');
+    Route::get('/show-patient-form', [PatientController::class, 'create'])->name('patient.form');
+});
+
