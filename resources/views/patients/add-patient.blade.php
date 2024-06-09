@@ -14,6 +14,11 @@
                 <div class="card">
                     <div class="card-header">Create Patient</div>
                     <div class="card-body">
+                        @if (session('success'))
+                        <div class="alert alert-success">
+                            {{ session('success') }}
+                        </div>
+                    @endif
                         <form action="{{ route('add.patient') }}" method="POST">
                             @csrf
 
