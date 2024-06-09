@@ -10,22 +10,31 @@ class PatientController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request)
-    {
-        $query = Patient::query();
+public function index(Request $request)
+{
+    $query = Patient::query();
 
-        // Check if 'filter_date' is present in the request
-        if ($request->has('filter_date')) {
-            $filterDate = $request->input('filter_date');
-            $query->whereDate('registration_date', $filterDate);
-        }
-
-        // Get the filtered or non-filtered list of patients
-        $patients = $query->get();
-
-        // Pass the patients list to the view
-        return view('patients.index', compact('patients'));
+    // Apply filters based on the presence of query parameters
+    if ($filterDate = $request->input('filter_date')) {
+        $query->whereDate('registration_date', $filterDate);
     }
+
+    if ($searchName = $request->input('search_name')) {
+        $query->where(function ($q) use ($searchName) {
+            $q->where('first_name', 'like', '%' . $searchName . '%')
+              ->orWhere('last_name', 'like', '%' . $searchName . '%');
+        });
+    }
+
+    // Get the filtered or non-filtered list of patients
+    $patients = $query->get();
+
+    // Prepare the message for no records found
+    $noRecordsMessage = $patients->isEmpty() ? 'No records found for the name ' . ($searchName ?? '') : '';
+
+    // Pass the patients list and the no records message to the view
+    return view('patients.index', compact('patients', 'noRecordsMessage'));
+}
 
 
     /**
