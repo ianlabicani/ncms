@@ -3,6 +3,9 @@
 @section('title', 'Edit Patient')
 
 @section('css')
+    {{-- Font Awesome --}}
+    <link rel="stylesheet" href="{{ url('Css/all.min.css') }}">
+    <link rel="stylesheet" href="{{ url('Css/fontawesome.min.css') }}">
     {{-- Favicon --}}
     <link rel="shortcut icon" href="{{ url('Image/logo.png') }}" type="image/x-icon">
     {{-- Boostrap --}}
