@@ -6,6 +6,11 @@
 @section('content_header')
     <h1>Patients</h1>
     <div class="filter-actions-container flex">
+        @if (session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
         <form method="GET" action="{{ route('patients.index') }}" class="form-inline mb-2">
             <div class="form-group">
                 <label for="filter_date">Filter by Date:</label>
@@ -16,7 +21,7 @@
 
         <form method="GET" action="{{ route('patients.index') }}" class="form-inline">
             <input type="hidden" name="filter_date" value="{{ \Carbon\Carbon::today()->toDateString() }}">
-            <button type="submit" class="btn btn-secondary">Today's Patients</button>
+            <button type="submit" class="btn btn-secondary">Todays Patients</button>
         </form>
     </div>
 @stop
@@ -48,8 +53,7 @@
                 <td>{{ $patient->address }}</td>
                 <td>{{ $patient->registration_date }}</td>
                 <td class="pt-1">
-                    <!-- add  route('patients.edit', $patient->id) -->
-                    <a href="" class="btn btn-primary">Edit</a>
+                    <a href="{{ route('patients.edit', $patient) }}" class="btn btn-primary">Edit</a>
                 </td>
             </tr>
             @endforeach
