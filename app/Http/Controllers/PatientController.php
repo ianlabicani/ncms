@@ -33,7 +33,7 @@ class PatientController extends Controller
      */
     public function create()
     {
-        return view ('patient.add-patient');
+        return view ('patients.add-patient');
     }
 
     /**
@@ -69,17 +69,30 @@ class PatientController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Patient $patient)
     {
-        //
+        return view('patients.update-patient', compact('patient'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Patient $patient)
     {
-        //
+        $validated = $request->validate([
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'date_of_birth' => 'required|date',
+            'gender' => 'required|string',
+            'contact_number' => 'required|string|max:15',
+            'email' => 'required|string|email|max:255',
+            'address' => 'required|string|max:255',
+            'registration_date' => 'required|date',
+        ]);
+
+        $patient->update($validated);
+
+        return redirect()->route('patients.index', $patient)->with('success', 'Patient updated successfully!');
     }
 
     /**
