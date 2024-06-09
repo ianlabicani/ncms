@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\ChangePasswordController;
 use App\Http\Controllers\Auth\ProfileController;
+use App\Http\Controllers\ExportDataController;
 use App\Http\Controllers\PatientController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -44,6 +45,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile/{user}/edit', [ProfileController::class, 'editProfile'])->name('profile.edit');
     Route::put('/profile/{user}', [ProfileController::class, 'update'])->name('profile.update');
 
+
+
+    // export
+    Route::get('/Export/Patient-record', [ExportDataController::class, 'exportExcel'])->name('patient.excel-record');
+    Route::get('/export-patients-pdf', [ExportDataController::class, 'exportPdf'])->name('patient.pdf-record');
 
 });
 
