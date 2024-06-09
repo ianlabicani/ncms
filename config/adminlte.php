@@ -113,8 +113,8 @@ return [
         'enabled' => false,
         'mode' => 'fullscreen',
         'img' => [
-            'path' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
-            'alt' => 'AdminLTE Preloader Image',
+            'path' => 'Image/logo.png',
+            'alt' => 'NHCC Logo',
             'effect' => 'animation__shake',
             'width' => 60,
             'height' => 60,
@@ -196,7 +196,7 @@ return [
     'classes_content_wrapper' => '',
     'classes_content_header' => '',
     'classes_content' => '',
-    'classes_sidebar' => 'sidebar-light-info elevation-2',
+    'classes_sidebar' => 'sidebar-light-danger elevation-2',
     'classes_sidebar_nav' => '',
     'classes_topnav' => 'navbar-white navbar-light',
     'classes_topnav_nav' => 'navbar-expand',
@@ -217,12 +217,12 @@ return [
     'sidebar_mini' => 'lg',
     'sidebar_collapse' => true,
     'sidebar_collapse_auto_size' => false,
-    'sidebar_collapse_remember' => false,
+    'sidebar_collapse_remember' => true,
     'sidebar_collapse_remember_no_transition' => true,
     'sidebar_scrollbar_theme' => 'os-theme-light',
     'sidebar_scrollbar_auto_hide' => 'l',
     'sidebar_nav_accordion' => true,
-    'sidebar_nav_animation_speed' => 300,
+    'sidebar_nav_animation_speed' => 400,
 
     /*
     |--------------------------------------------------------------------------
@@ -309,6 +309,13 @@ return [
         [
             'type' => 'sidebar-menu-search',
             'text' => 'Search',
+        ],
+        [
+            'text' => 'Dashboard',
+            'url' => '/home',
+            'icon' => 'fas fa-fw fa-home',
+            'label' => '',
+            'label_color' => '',
         ],
         // [
         //     'text' => 'pages',
