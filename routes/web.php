@@ -29,5 +29,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/patients', [PatientController::class, 'index'])->name('patients.index');
     Route::post('/add-patient', [PatientController::class, 'store'])->name('add.patient');
     Route::get('/show-patient-form', [PatientController::class, 'create'])->name('patient.form');
+
+
+
+Route::get('/patients/{patient}/edit', [PatientController::class, 'edit'])->name('patients.edit');
+Route::put('/patients/{patient}', [PatientController::class, 'update'])->name('patients.update');
+
 });
 
