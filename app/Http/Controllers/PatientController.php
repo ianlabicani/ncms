@@ -33,7 +33,7 @@ class PatientController extends Controller
      */
     public function create()
     {
-        return view ('patients.add-patient');
+        return view('patients.add-patient');
     }
 
     /**
@@ -55,7 +55,7 @@ class PatientController extends Controller
 
         Patient::create($validated);
 
-        return redirect()->route('patient.form')->with('success', 'Patient created successfully!');
+        return redirect()->back()->with('successadded', 'Patient created successfully!');
     }
 
     /**
@@ -92,7 +92,7 @@ class PatientController extends Controller
 
         $patient->update($validated);
 
-        return redirect()->route('patients.index', $patient)->with('success', 'Patient updated successfully!');
+        return redirect()->route('patients.index')->with('successupdate', 'Patient updated successfully!');
     }
 
     /**
