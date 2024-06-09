@@ -327,6 +327,10 @@ return [
             'text' => 'profile',
             'url' => 'admin/settings',
             'icon' => 'fas fa-fw fa-user',
+        ],       [
+            'text' => 'patients',
+            'url' => 'patients',
+            'icon' => 'fas fa-fw fa-user',
         ],
         [
             'text' => 'change_password',
