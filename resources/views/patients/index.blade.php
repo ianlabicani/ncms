@@ -60,7 +60,10 @@
 @stop
 
 @section('content_header')
-    <h4 class="fw-bolder mb-1 color">Patient Records</h4>
+    <div class="d-flex justify-content-between mb-3">
+        <h4 class="fw-bolder">Patient Records</h4>
+
+    </div>
     <div class="filter-actions-container flex">
         @if (session('successupdate'))
             <script>
@@ -89,42 +92,37 @@
 @section('content')
 
     <body>
-        <div class="d-flex justify-content-between align-items-center">
-            <div class="d-flex justify-content-between align-items-center mb-3 gap-2">
-            <form method="GET" action="{{ route('patients.index') }}" class="form-inline mb-2">
-                <div class="form-group">
-                <label for="filter_date">Filter by Date:</label>
-                <input type="date" id="filter_date" name="filter_date" class="form-control mx-sm-2">
+        <div class="row">
+            <div class="col-9">
+                <div class="d-flex align-items-center mb-3 gap-2">
+                    <form method="GET" action="{{ route('patients.index') }}" class="form-inline">
+                        <div class="form-group">
+                            <label for="filter_date">Filter by Date:</label>
+                            <input type="date" id="filter_date" name="filter_date" class="form-control mx-sm-2">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Filter</button>
+                    </form>
+                    <form method="GET" action="{{ route('patients.index') }}" class="">
+                        <input type="hidden" name="filter_date" value="{{ \Carbon\Carbon::today()->toDateString() }}">
+                        <button type="submit" class="btn btn-primary">Todays Patients</button>
+                    </form>
                 </div>
-                <button type="submit" class="btn btn-primary">Filter</button>
-            </form>
-
-            <form method="GET" action="{{ route('patients.index') }}" class="form-inline">
-                <input type="hidden" name="filter_date" value="{{ \Carbon\Carbon::today()->toDateString() }}">
-                <button type="submit" class="btn btn-success">Todays Patients</button>
-            </form>
             </div>
+            <div class="col-3">
+                <div class="d-flex justify-content-between align-items-right mb-3 gap-2">
+                    <form method="GET" action="{{ route('patient.excel-record') }}" class="">
+                        <button type="submit" class="btn btn-success"><i class="fa-solid fa-file me-1"></i>Export
+                            Excel</button>
+                    </form>
 
-            <div class="d-flex justify-content-between align-items-right mb-3 gap-2">
-            <form method="GET" action="{{ route('patient.excel-record') }}" class="form-inline"></form>
-                <button type="submit" class="btn btn-success">Export Excel</button>
-            </form>
-
-            <form method="GET" action="{{ route('patient.pdf-record') }}" class="form-inline">
-                <button type="submit" class="btn btn-danger">Export Pdf</button>
-            </form>
+                    <form method="GET" action="{{ route('patient.pdf-record') }}" class="">
+                        <button type="submit" class="btn btn-danger"><i class="fa-solid fa-file-pdf me-1"></i>Export
+                            Pdf</button>
+                    </form>
+                </div>
             </div>
         </div>
 
-        <div class="d-flex justify-content-end mb-3">
-            <form method="GET" action="{{ route('patients.index') }}" class="form-inline">
-                <div class="form-group">
-                    <label for="search_name">Search by Name:</label>
-                    <input type="text" id="lastname" name="search_name" value="{{ old('search_name') }}" ="form-control mx-sm-2">
-                </div>
-            <button type="submit" class="btn btn-primary">Search</button>
-            </form>
-        </div>
         <table class="table table-bordered">
             <thead>
                 <tr>
@@ -141,33 +139,51 @@
             </thead>
             <tbody>
                 <!-- Patients List -->
-                <h1>Patients List</h1>
+                <div class="row mb-0">
+                    <div class="col-9">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h4 class="fw-semibold mt-1 color">Patients List</h4>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <form method="GET" action="{{ route('patients.index') }}" class="d-flex">
+                            <div class="form-group d-flex flex-grow-1 me-0">
+                                <input type="text" id="lastname" name="search_name" value="{{ old('search_name') }}"
+                                    class="form-control me-2" placeholder="Search by Name">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class='fa-solid fa-magnifying-glass me-2 d-inline'></i>Search
+                                </button>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
                 @if ($patients->isEmpty())
 
-                <tr>
-                    <td colspan="9">
-                        <div class="h1 text-center alert alert-warning">
-                        {{ $noRecordsMessage }}
-                        </div>
-                    </td>
-                </tr>
-                </tr>
-                    @else
-                    @foreach ($patients as $patient)
                     <tr>
-                        <td>{{ $patient->first_name }}</td>
-                        <td>{{ $patient->last_name }}</td>
-                        <td>{{ \Carbon\Carbon::parse($patient->date_of_birth)->format('F d, Y') }}</td>
-                        <td>{{ $patient->gender }}</td>
-                        <td>{{ $patient->contact_number }}</td>
-                        <td>{{ $patient->email }}</td>
-                        <td>{{ $patient->address }}</td>
-                        <td>{{ \Carbon\Carbon::parse($patient->registration_date)->format('F d, Y') }}</td>
-                        <td class="text-center pt-1">
-                            <a href="{{ route('patients.edit', $patient) }}" class="btn"><i
-                                    class="fa-solid fa-pen-to-square fa-lg text-primary"></i></a>
+                        <td colspan="9">
+                            <div class="h1 text-center alert alert-warning">
+                                {{ $noRecordsMessage }}
+                            </div>
                         </td>
                     </tr>
+                    </tr>
+                @else
+                    @foreach ($patients as $patient)
+                        <tr>
+                            <td>{{ $patient->first_name }}</td>
+                            <td>{{ $patient->last_name }}</td>
+                            <td>{{ \Carbon\Carbon::parse($patient->date_of_birth)->format('F d, Y') }}</td>
+                            <td>{{ $patient->gender }}</td>
+                            <td>{{ $patient->contact_number }}</td>
+                            <td>{{ $patient->email }}</td>
+                            <td>{{ $patient->address }}</td>
+                            <td>{{ \Carbon\Carbon::parse($patient->registration_date)->format('F d, Y') }}</td>
+                            <td class="text-center pt-1">
+                                <a href="{{ route('patients.edit', $patient) }}" class="btn"><i
+                                        class="fa-solid fa-pen-to-square fa-lg text-primary"></i></a>
+                            </td>
+                        </tr>
                     @endforeach
                 @endif
             </tbody>
