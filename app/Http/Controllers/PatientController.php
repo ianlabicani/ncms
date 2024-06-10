@@ -78,6 +78,9 @@ public function index(Request $request)
     public function show(string $id)
     {
         //
+        $patient = Patient::findOrFail($id);
+        return view('patients.show', compact('patient'));
+
     }
 
     /**
