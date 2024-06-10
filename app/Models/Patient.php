@@ -29,4 +29,9 @@ class Patient extends Model
         $months = $dob->diffInMonths(Carbon::now()) % 12;
         return "{$years} years {$months} months";
     }
+
+    public function patientVisits()
+    {
+        return $this->hasMany(PatientVisit::class, 'patient_id');
+    }
 }
