@@ -130,13 +130,12 @@
                 <tr>
                     <th>First Name</th>
                     <th>Last Name</th>
+                    <th>Age</th>
                     <th>Date of Birth</th>
                     <th>Gender</th>
-                    <th>Contact Number</th>
-                    <th>Email</th>
-                    <th>Address</th>
+                    <th>Purpose</th>
                     <th>Registration Date</th>
-                    <th>Action</th>
+                    <th class="text-center">Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -157,26 +156,95 @@
                     <tr>
                         <td>{{ $patient->first_name }}</td>
                         <td>{{ $patient->last_name }}</td>
+                        <td>{{$patient->age_with_months}}</td>
                         <td>{{ \Carbon\Carbon::parse($patient->date_of_birth)->format('F d, Y') }}</td>
                         <td>{{ $patient->gender }}</td>
-                        <td>{{ $patient->contact_number }}</td>
-                        <td>{{ $patient->email }}</td>
-                        <td>{{ $patient->address }}</td>
+                        <td>{{ $patient->purpose }}</td>
                         <td>{{ \Carbon\Carbon::parse($patient->registration_date)->format('F d, Y') }}</td>
                         <td class="text-center pt-1">
                             <a href="{{ route('patients.edit', $patient) }}" class="btn"><i
                                     class="fa-solid fa-pen-to-square fa-lg text-primary"></i></a>
+                            <!-- <a href="" type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal"><i
+
+                            class="fa-solid fa-eye fa-lg text-primary"></i></a> -->
+
+                              @forelse($patients as $data)
+
+          <a href="" type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal{{$data->id}}"><i
+                                    class="fa-solid fa-eye fa-lg text-primary"></i></a>
+
+
+            <div class="modal fade" id="exampleModal{{$data->id}}" tabindex="-1" aria-labelledby="patientModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="patientModalLabel">Patient Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Patient details here -->
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="first_name" class="form-label">First Name:</label>
+                            <input type="text" class="form-control" id="first_name" name="first_name" value="{{$data->first_name}}" readonly>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="last_name" class="form-label">Last Name:</label>
+                            <input type="text" class="form-control" id="last_name" name="last_name" value="{{$data->last_name}}" readonly>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="age" class="form-label">Age:</label>
+                            <input type="text" class="form-control" id="age" name="age" value="{{$data->age_with_months}}" readonly>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="date_of_birth" class="form-label">Date of Birth:</label>
+                            <input type="text" class="form-control" id="date_of_birth" name="date_of_birth" value="{{$data->date_of_birth}}" readonly>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="gender" class="form-label">Gender:</label>
+                            <input type="text" class="form-control" id="gender" name="gender" value="{{$data->gender}}" readonly>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="purpose" class="form-label">Purpose:</label>
+                            <input type="text" class="form-control" id="purpose" name="purpose" value="{{$data->purpose}}" readonly>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="registration_date" class="form-label">Registration Date:</label>
+                            <input type="text" class="form-control" id="registration_date" name="registration_date" value="{{$data->registration_date}}" readonly>
+                        </div>
+                    </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+            </div>
+            </div>
+        </div>
+    </div>
+
+
+        @empty
+        <h1>error</h1>
+        @endforelse
                         </td>
                     </tr>
                     @endforeach
                 @endif
             </tbody>
         </table>
+
+
     </body>
 @stop
 
 @section('js')
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
-    </script>
+</script>
 @stop
