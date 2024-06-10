@@ -104,7 +104,7 @@
         <div class="pt-2">
             <div style="height: 300px; overflow-y: auto;">
                 <table class="table table-bordered">
-                    <thead>
+                    <thead class="table-secondary sticky-top">
                         <tr>
                             <th>Visit Date</th>
                             <th>Description</th>

@@ -39,56 +39,41 @@
             <div class="row">
                 <div class="col-lg-3 col-6">
                     <!-- small box -->
-                    <div class="small-box bg-info">
+                    <div class="small-box bg-info" style="height: 8rem;">
                         <div class="inner">
                             <h3>{{ $patientsToday }}</h3>
-                            <p>Number of patients registered today</p>
-                        </div>
-                        <div class="icon">
-                            <i class="ion ion-bag"></i>
+                            <p>Registered today</p>
                         </div>
                     </div>
                 </div>
                 <!-- ./col -->
                 <div class="col-lg-3 col-6">
                     <!-- small box -->
-                    <div class="small-box bg-success">
+                    <div class="small-box bg-success" style="height: 8rem;">
                         <div class="inner">
                             <h3>{{ $patientsThisWeek }}</h3>
                             {{-- <sup style="font-size: 20px">%</sup> --}}
-                            <p>Number of patients registered this week</p>
-                        </div>
-                        <div class="icon">
-                            <i class="ion ion-stats-bars"></i>
+                            <p>Registered this week</p>
                         </div>
                     </div>
                 </div>
                 <!-- ./col -->
                 <div class="col-lg-3 col-6">
                     <!-- small box -->
-                    <div class="small-box bg-warning">
+                    <div class="small-box bg-warning" style="height: 8rem;">
                         <div class="inner">
                             <h3>{{ $patientsThisMonth }}</h3>
-
-                            <p>Number of patients registered this month</p>
-
-                        </div>
-                        <div class="icon">
-                            <i class="ion ion-person-add"></i>
+                            <p>Registered this month</p>
                         </div>
                     </div>
                 </div>
                 <!-- ./col -->
                 <div class="col-lg-3 col-6">
                     <!-- small box -->
-                    <div class="small-box bg-danger">
+                    <div class="small-box bg-danger" style="height: 8rem;">
                         <div class="inner">
                             <h3>{{ $patientsThisYear }}</h3>
-
-                            <p>Number of patients registered this year</p>
-                        </div>
-                        <div class="icon">
-                            <i class="ion ion-pie-graph"></i>
+                            <p>Registered this year</p>
                         </div>
                     </div>
                 </div>

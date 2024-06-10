@@ -2,6 +2,10 @@
 @extends('adminlte::master')
 
 @section('adminlte_css')
+    <link rel="stylesheet" href="{{ url('Css/all.min.css') }}">
+    <link rel="stylesheet" href="{{ url('Css/fontawesome.min.css') }}">
+    {{-- Favicon --}}
+    <link rel="shortcut icon" href="{{ url('Image/logo.png') }}" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
