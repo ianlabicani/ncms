@@ -30,7 +30,7 @@ public function index(Request $request)
         $patients = $query->get();
         $noRecordsMessage = $patients->isEmpty() && $request->input('search_name') ? 'No records found for the name ' . ($searchName ?? '') . '.' : 'No records found.';
     // Get the filtered or non-filtered list of patients
-    $patients = Patient::select('first_name', 'last_name', 'date_of_birth', 'gender', 'contact_number', 'purpose', 'id')->get();
+    $patients = Patient::select('first_name', 'last_name', 'date_of_birth', 'gender', 'contact_number', 'purpose', 'registration_date', 'id')->get();
 
     // No need to compute age in controller as it's already done in the model
 
