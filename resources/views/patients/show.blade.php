@@ -111,7 +111,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse ($patient->patientVisits as $record)
+                        @forelse ($sortedRecords as $record)
                             <tr>
                                 <td> {{ Carbon::parse($record->visit_date)->format('F j, Y') }}</td>
                                 <td>{{ $record->purpose }}</td>
