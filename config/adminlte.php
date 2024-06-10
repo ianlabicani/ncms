@@ -350,7 +350,7 @@ return [
                     'url' => '/show-patient-form',
                 ],
                 [
-                    'text' => 'Patient Records',
+                    'text' => 'Patient List',
                     'icon' => 'fa-solid fa-list',
                     'icon_color' => 'green',
                     'url' => '/patients',
