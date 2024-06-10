@@ -40,7 +40,41 @@
 
         <!--  -->
 
+        <form action="{{ route('patient-visit.store') }}" method="POST">
+            @csrf
+            <input type="hidden" class="form-control" id="id" name="id" value="{{$patient->id}}">
+            <div class="mb-3">
+                <label for="visit_date" class="form-label">Visit Date</label>
+                <input type="date" class="form-control" id="visit_date" name="visit_date" required>
+            </div>
+            <div class="mb-3">
+                <label for="purpose" class="form-label">Purpose</label>
+                <input type="text" class="form-control" id="purpose" name="purpose" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Add Record</button>
+        </form>
+
         <!-- patient's records table -->
+        <table class="table" border="1px">
+            <thead>
+                <tr>
+                    <th>Visit Date</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                @forelse ($patient->patientVisits as $record)
+                <tr>
+                    <td>{{ $record->visit_date }}</td>
+                    <td>{{ $record->purpose }}</td>
+                </tr>
+                @empty
+                <tr>
+                    <td colspan="2" class="text-center">No records found</td>
+                </tr>
+                @endforelse
+            </tbody>
+        </table>
 @stop
 
 @section('js')
