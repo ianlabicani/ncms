@@ -29,6 +29,10 @@ public function index(Request $request)
         // Get the filtered or non-filtered list of patients
         $patients = $query->get();
         $noRecordsMessage = $patients->isEmpty() && $request->input('search_name') ? 'No records found for the name ' . ($searchName ?? '') . '.' : 'No records found.';
+    // Get the filtered or non-filtered list of patients
+    $patients = Patient::select('first_name', 'last_name', 'date_of_birth', 'gender', 'contact_number', 'purpose', 'id')->get();
+
+    // No need to compute age in controller as it's already done in the model
 
     // Prepare the message for no records found
 
@@ -60,6 +64,7 @@ public function index(Request $request)
             'email' => 'required|string|email|max:255',
             'address' => 'required|string|max:255',
             'registration_date' => 'required|date',
+            'purpose' => 'required|string|max:255',
         ]);
 
         Patient::create($validated);
@@ -97,6 +102,7 @@ public function index(Request $request)
             'email' => 'required|string|email|max:255',
             'address' => 'required|string|max:255',
             'registration_date' => 'required|date',
+            'purpose' => 'required|string|max:255',
         ]);
 
         $patient->update($validated);
