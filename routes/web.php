@@ -38,6 +38,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/show-patient-form', [PatientController::class, 'create'])->name('patient.form');
     Route::get('/patients/{patient}/edit', [PatientController::class, 'edit'])->name('patients.edit');
     Route::put('/patients/{patient}', [PatientController::class, 'update'])->name('patients.update');
+    Route::get('/patients/{patient}', [PatientController::class, 'show'])->name('patients.show');
 
     // profile
     Route::get('/profile/change-password', [ChangePasswordController::class, 'showChangePasswordForm'])->name('profile.changePasswordForm');
