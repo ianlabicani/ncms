@@ -312,7 +312,7 @@ return [
         ],
         [
             'text' => 'Dashboard',
-            'url' => '/home',
+            'url' => '/dashboard',
             'icon' => 'fas fa-fw fa-home',
             'label' => '',
             'label_color' => '',
