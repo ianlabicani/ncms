@@ -61,7 +61,7 @@
 
 @section('content_header')
     <div class="d-flex justify-content-between">
-        <h4 class="fw-bolder">Patient Records</h4>
+        <h4 class="fw-bolder">Patient List</h4>
 
     </div>
     <div class="filter-actions-container flex">
@@ -141,7 +141,7 @@
                 <div class="row mb-0">
                     <div class="col-9">
                         <div class="d-flex justify-content-between align-items-center">
-                            <h4 class="fw-semibold mt-1 color">Patients List</h4>
+                            {{-- <h4 class="fw-semibold mt-1 color">Patients List</h4> --}}
                         </div>
                     </div>
                     <div class="col-3">
