@@ -163,6 +163,14 @@
                                     </div>
                                 </div>
                                 <div class="row">
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label for="purpose">Purpose</label>
+                                            <input type="text" name="purpose" id="purpose" class="form-control" placeholder="Enter purpose" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
                                     <div class="col-3">
                                         <div class="d-flex align-items-center">
                                             <button type="submit" class="btn btn-primary me-3">Add
