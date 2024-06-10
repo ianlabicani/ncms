@@ -60,7 +60,7 @@
 @stop
 
 @section('content_header')
-    <div class="d-flex justify-content-between mb-3">
+    <div class="d-flex justify-content-between">
         <h4 class="fw-bolder">Patient Records</h4>
 
     </div>
@@ -93,8 +93,8 @@
 
     <body>
         <div class="row">
-            <div class="col-9">
-                <div class="d-flex align-items-center mb-3 gap-2">
+            <div class="col-8">
+                <div class="d-flex align-items-center gap-2">
                     <form method="GET" action="{{ route('patients.index') }}" class="form-inline">
                         <div class="form-group">
                             <label for="filter_date">Filter by Date:</label>
@@ -108,8 +108,8 @@
                     </form>
                 </div>
             </div>
-            <div class="col-3">
-                <div class="d-flex justify-content-between align-items-right mb-3 gap-2">
+            <div class="col-4">
+                <div class="d-flex justify-content-end align-items-center gap-2">
                     <form method="GET" action="{{ route('patient.excel-record') }}" class="">
                         <button type="submit" class="btn btn-success"><i class="fa-solid fa-file me-1"></i>Export
                             Excel</button>
@@ -117,14 +117,14 @@
 
                     <form method="GET" action="{{ route('patient.pdf-record') }}" class="">
                         <button type="submit" class="btn btn-danger"><i class="fa-solid fa-file-pdf me-1"></i>Export
-                            Pdf</button>
+                            PDF</button>
                     </form>
                 </div>
             </div>
         </div>
-
+        <hr>
         <table class="table table-bordered">
-            <thead>
+            <thead class="table-primary">
                 <tr>
                     <th>First Name</th>
                     <th>Last Name</th>
@@ -167,28 +167,35 @@
                     </tr>
                 @else
                     @foreach ($patients as $patient)
-                    <tr>
-                        <td>{{ $patient->first_name }}</td>
-                        <td>{{ $patient->last_name }}</td>
-                        <td>{{$patient->age_with_months}}</td>
-                        <td>{{ \Carbon\Carbon::parse($patient->date_of_birth)->format('F d, Y') }}</td>
-                        <td>{{ $patient->gender }}</td>
-                        <td>{{ $patient->purpose }}</td>
-                        <td>{{ \Carbon\Carbon::parse($patient->registration_date)->format('F d, Y') }}</td>
-                        <td class="text-center pt-1">
-                            <a href="{{ route('patients.edit', $patient) }}" class="btn"><i class="fa-solid fa-pen-to-square fa-lg text-primary"></i></a>
-                            <a href="{{ route('patients.show', $patient) }}" type="button" class="btn"><i class="fa-solid fa-eye fa-lg text-primary"></i></a>
-                        </td>
-                    </tr>
+                        <tr>
+                            <td>{{ $patient->first_name }}</td>
+                            <td>{{ $patient->last_name }}</td>
+                            <td>{{ $patient->age_with_months }}</td>
+                            <td>{{ \Carbon\Carbon::parse($patient->date_of_birth)->format('F d, Y') }}</td>
+                            <td>{{ $patient->gender }}</td>
+                            <td>{{ $patient->purpose }}</td>
+                            <td>{{ \Carbon\Carbon::parse($patient->registration_date)->format('F d, Y') }}</td>
+                            <td class="text-center pt-1">
+                                <a href="{{ route('patients.edit', $patient) }}" class="btn"><i
+                                        class="fa-solid fa-pen-to-square fa-lg text-primary"></i></a>
+                                <a href="{{ route('patients.show', $patient) }}" type="button" class="btn"><i
+                                        class="fa-solid fa-eye fa-lg text-primary"></i></a>
+                            </td>
+                        </tr>
                     @endforeach
                 @endif
             </tbody>
         </table>
+        <div>
+            {{ $patients->links('pagination::bootstrap-5') }}
+        </div>
     </body>
 @stop
 
 @section('js')
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
-</script>
+    </script>
 @stop
