@@ -29,13 +29,12 @@ class PatientVisitController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'visit_date' => 'required|date',
             'purpose' => 'required|string|max:255',
         ]);
 
         $patientVisit = new PatientVisit();
         $patientVisit->patient_id = $request->input('id');
-        $patientVisit->visit_date = $request->input('visit_date');
+        $patientVisit->visit_date = $request->input('visit_date') ?? now();
         $patientVisit->purpose = $request->input('purpose');
         // Add more fields as necessary
         $patientVisit->save();
