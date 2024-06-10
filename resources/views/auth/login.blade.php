@@ -69,7 +69,7 @@
                                 <div class="icheck-primary">
                                     <input type="checkbox" name="remember" id="remember"
                                         {{ old('remember') ? 'checked' : '' }}>
-                                    <label for="remember">
+                                    <label for="remember" style="font-weight: 500;">
                                         Remember Me
                                     </label>
                                 </div>
@@ -77,7 +77,7 @@
                             <div class="col-5">
                                 <p class="mb-1">
                                     <a href="{{ route('password.request') }}" class="text-danger text-decoration-none"
-                                        style="font-weight: 800;">I forgot my password</a>
+                                        style="font-weight: 500;">I forgot my password</a>
                                 </p>
                             </div>
                         </div>
@@ -92,7 +92,7 @@
                         <div class="col-12 text-center">
                             <p class="mb-0">
                                 <a href="{{ route('register') }}" class="text-center text-decoration-none"
-                                    style="font-weight: 800;">Register a
+                                    style="font-weight: 500;">Register a
                                     New Account</a>
                             </p>
                         </div>
@@ -101,10 +101,10 @@
             </div>
         </div>
     </div>
-    <div class="copyright zoom-out" style="color:#030101;">
+    {{-- <div class="copyright zoom-out" style="color:#030101;">
         &copy; Copyright <strong><span class="text-danger">NORTHERN HEALTHCARE CHILDREN CLINIC</span></strong>. All Rights
         Reserved
-    </div>
+    </div> --}}
 @stop
 
 @section('adminlte_js')
