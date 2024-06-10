@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\ChangePasswordController;
 use App\Http\Controllers\Auth\ProfileController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ExportDataController;
 use App\Http\Controllers\PatientController;
 use Illuminate\Support\Facades\Route;
@@ -20,7 +21,7 @@ use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
     if (Auth::check()) {
-        return redirect()->route('home');
+        return redirect()->route('dashboard');
     }
     return redirect()->route('login');
 });
@@ -51,5 +52,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/Export/Patient-record', [ExportDataController::class, 'exportExcel'])->name('patient.excel-record');
     Route::get('/export-patients-pdf', [ExportDataController::class, 'exportPdf'])->name('patient.pdf-record');
 
+    // dashboard
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 });
 
