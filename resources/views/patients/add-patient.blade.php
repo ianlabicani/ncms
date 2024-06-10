@@ -60,7 +60,7 @@
 @stop
 
 @section('content_header')
-    <h4 class="fw-bolder mb-3 color">Add Patient</h4>
+    <h4 class="fw-bolder">Add Patient</h4>
     @if (session('successadded'))
         <script>
             const Toast = Swal.mixin({
@@ -166,7 +166,8 @@
                                     <div class="col-12">
                                         <div class="form-group">
                                             <label for="purpose">Purpose</label>
-                                            <input type="text" name="purpose" id="purpose" class="form-control" placeholder="Enter purpose" required>
+                                            <input type="text" name="purpose" id="purpose" class="form-control"
+                                                placeholder="Enter purpose" required>
                                         </div>
                                     </div>
                                 </div>
