@@ -24,13 +24,13 @@ public function index(Request $request)
             $q->where('first_name', 'like', '%' . $searchName . '%')
               ->orWhere('last_name', 'like', '%' . $searchName . '%');
         });
-    }
+        }
 
-    // Get the filtered or non-filtered list of patients
-    $patients = $query->get();
+        // Get the filtered or non-filtered list of patients
+        $patients = $query->get();
+        $noRecordsMessage = $patients->isEmpty() && $request->input('search_name') ? 'No records found for the name ' . ($searchName ?? '') . '.' : 'No records found.';
 
     // Prepare the message for no records found
-    $noRecordsMessage = $patients->isEmpty() ? 'No records found for the name ' . ($searchName ?? '') : '';
 
     // Pass the patients list and the no records message to the view
     return view('patients.index', compact('patients', 'noRecordsMessage'));
