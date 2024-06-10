@@ -102,11 +102,15 @@ class PatientController extends Controller
      * Display the specified resource.
      */
     public function show(string $id)
-    {
-        //
-        $patient = Patient::findOrFail($id);
-        return view('patients.show', compact('patient'));
-    }
+{
+    // Retrieve the patient
+    $patient = Patient::findOrFail($id);
+
+    // Sort patient visits by visit date in descending order
+    $sortedRecords = $patient->patientVisits()->orderBy('created_at', 'desc')->get();
+
+    return view('patients.show', compact('patient', 'sortedRecords'));
+}
 
     /**
      * Show the form for editing the specified resource.
