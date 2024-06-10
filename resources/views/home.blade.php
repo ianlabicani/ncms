@@ -41,9 +41,8 @@
                     <!-- small box -->
                     <div class="small-box bg-info">
                         <div class="inner">
-                            <h3>150</h3>
-
-                            <p>All Patients</p>
+                            <h3>{{ $patientsToday }}</h3>
+                            <p>Number of patients registered today</p>
                         </div>
                         <div class="icon">
                             <i class="ion ion-bag"></i>
@@ -55,9 +54,9 @@
                     <!-- small box -->
                     <div class="small-box bg-success">
                         <div class="inner">
-                            <h3>53</h3>
+                            <h3>{{ $patientsThisWeek }}</h3>
                             {{-- <sup style="font-size: 20px">%</sup> --}}
-                            <p>Bounce Rate</p>
+                            <p>Number of patients registered this week</p>
                         </div>
                         <div class="icon">
                             <i class="ion ion-stats-bars"></i>
@@ -69,9 +68,10 @@
                     <!-- small box -->
                     <div class="small-box bg-warning">
                         <div class="inner">
-                            <h3>44</h3>
+                            <h3>{{ $patientsThisMonth }}</h3>
 
-                            <p>User Registrations</p>
+                            <p>Number of patients registered this month</p>
+
                         </div>
                         <div class="icon">
                             <i class="ion ion-person-add"></i>
@@ -83,9 +83,9 @@
                     <!-- small box -->
                     <div class="small-box bg-danger">
                         <div class="inner">
-                            <h3>65</h3>
+                            <h3>{{ $patientsThisYear }}</h3>
 
-                            <p>Unique Visitors</p>
+                            <p>Number of patients registered this year</p>
                         </div>
                         <div class="icon">
                             <i class="ion ion-pie-graph"></i>
