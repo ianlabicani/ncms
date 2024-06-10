@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -20,4 +21,12 @@ class Patient extends Model
         'registration_date',
         'purpose'
     ];
+
+    public function getAgeWithMonthsAttribute()
+    {
+        $dob = Carbon::parse($this->attributes['date_of_birth']);
+        $years = $dob->diffInYears(Carbon::now());
+        $months = $dob->diffInMonths(Carbon::now()) % 12;
+        return "{$years} years {$months} months";
+    }
 }
