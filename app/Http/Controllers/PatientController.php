@@ -10,35 +10,61 @@ class PatientController extends Controller
     /**
      * Display a listing of the resource.
      */
-public function index(Request $request)
-{
-    $query = Patient::query();
+    public function index(Request $request)
+    {
+        $query = Patient::query();
 
-    // Apply filters based on the presence of query parameters
-    if ($filterDate = $request->input('filter_date')) {
-        $query->whereDate('registration_date', $filterDate);
-    }
-
-    if ($searchName = $request->input('search_name')) {
-        $query->where(function ($q) use ($searchName) {
-            $q->where('first_name', 'like', '%' . $searchName . '%')
-              ->orWhere('last_name', 'like', '%' . $searchName . '%');
-        });
+        // Apply filters based on the presence of query parameters
+        if ($filterDate = $request->input('filter_date')) {
+            $query->whereDate('registration_date', $filterDate);
         }
 
-        // Get the filtered or non-filtered list of patients
-        $patients = $query->get();
+        if ($searchName = $request->input('search_name')) {
+            $query->where(function ($q) use ($searchName) {
+                $q->where('first_name', 'like', '%' . $searchName . '%')
+                    ->orWhere('last_name', 'like', '%' . $searchName . '%');
+            });
+        }
+
+        // Get the filtered or non-filtered list of patients with pagination
+        $patients = $query->paginate(5);
+
+        // Prepare the message for no records found
         $noRecordsMessage = $patients->isEmpty() && $request->input('search_name') ? 'No records found for the name ' . ($searchName ?? '') . '.' : 'No records found.';
-    // Get the filtered or non-filtered list of patients
-    $patients = Patient::select('first_name', 'last_name', 'date_of_birth', 'gender', 'contact_number', 'purpose', 'registration_date', 'id')->get();
 
-    // No need to compute age in controller as it's already done in the model
+        // Pass the patients list and the no records message to the view
+        return view('patients.index', compact('patients', 'noRecordsMessage'));
+    }
 
-    // Prepare the message for no records found
+    // public function index(Request $request)
+    // {
+    //     $query = Patient::query();
 
-    // Pass the patients list and the no records message to the view
-    return view('patients.index', compact('patients', 'noRecordsMessage'));
-}
+    //     // Apply filters based on the presence of query parameters
+    //     if ($filterDate = $request->input('filter_date')) {
+    //         $query->whereDate('registration_date', $filterDate);
+    //     }
+
+    //     if ($searchName = $request->input('search_name')) {
+    //         $query->where(function ($q) use ($searchName) {
+    //             $q->where('first_name', 'like', '%' . $searchName . '%')
+    //                 ->orWhere('last_name', 'like', '%' . $searchName . '%');
+    //         });
+    //     }
+
+    //     // Get the filtered or non-filtered list of patients
+    //     $patients = $query->paginate(6);
+    //     $noRecordsMessage = $patients->isEmpty() && $request->input('search_name') ? 'No records found for the name ' . ($searchName ?? '') . '.' : 'No records found.';
+    //     // Get the filtered or non-filtered list of patients
+    //     $patients = Patient::select('first_name', 'last_name', 'date_of_birth', 'gender', 'contact_number', 'purpose', 'registration_date', 'id')->get();
+
+    //     // No need to compute age in controller as it's already done in the model
+
+    //     // Prepare the message for no records found
+
+    //     // Pass the patients list and the no records message to the view
+    //     return view('patients.index', compact('patients', 'noRecordsMessage'));
+    // }
 
 
     /**
@@ -80,7 +106,6 @@ public function index(Request $request)
         //
         $patient = Patient::findOrFail($id);
         return view('patients.show', compact('patient'));
-
     }
 
     /**
