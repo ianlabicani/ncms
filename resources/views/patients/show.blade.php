@@ -78,34 +78,19 @@
             @csrf
             <input type="hidden" class="form-control" id="id" name="id" value="{{$patient->id}}">
             <div class="mb-3">
-                <label for="visit_date" class="form-label">Visit Date</label>
+                <label for="visit_date" class="form-label">Visit Date <small class="text-muted">(Visiting today?
+                        Leave blank)</small></label>
                 <input type="date" class="form-control" id="visit_date" name="visit_date">
             </div>
-            <div class="mb-3">
-                <label for="purpose" class="form-label">Purpose</label>
-                <input type="text" class="form-control" id="purpose" name="purpose" required>
-            <input type="hidden" class="form-control" id="id" name="id" value="{{ $patient->id }}">
-            <div class="row pt-2">
-                <div class="col-4">
-
-
-                    <div class="mb-3">
-                        <label for="visit_date" class="form-label">Visit Date <small class="text-muted">(Visiting today?
-                                Leave blank)</small></label>
-                        <input type="date" class="form-control" id="visit_date" name="visit_date">
-                    </div>
+            <div class="col-6">
+                <div class="mb-3">
+                    <label for="purpose" class="form-label">Purpose <small class="text-muted">(Purpose of going
+                            clinic)</small></label>
+                    <input type="text" class="form-control" id="purpose" name="purpose" required>
                 </div>
-                <div class="col-6">
-
-                    <div class="mb-3">
-                        <label for="purpose" class="form-label">Purpose <small class="text-muted">(Purpose of going
-                                clinic)</small></label>
-                        <input type="text" class="form-control" id="purpose" name="purpose" required>
-                    </div>
-                </div>
-                <div class="col-2 pt-2">
-                    <button type="submit" class="btn btn-primary mb-2 mt-4">Add Record</button>
-                </div>
+            </div>
+            <div class="col-2 pt-2">
+                <button type="submit" class="btn btn-primary mb-2 mt-4">Add Record</button>
             </div>
         </form>
         {{-- <hr class="mt-0"> --}}
