@@ -19,7 +19,6 @@ class Patient extends Model
         'email',
         'address',
         'registration_date',
-        'purpose'
     ];
 
     public function getAgeWithMonthsAttribute()
