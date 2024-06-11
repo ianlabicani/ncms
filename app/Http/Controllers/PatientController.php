@@ -60,7 +60,6 @@ class PatientController extends Controller
             'email' => 'required|string|email|max:255',
             'address' => 'required|string|max:255',
             'registration_date' => 'required|date',
-            'purpose' => 'required|string|max:255',
         ]);
 
         Patient::create($validated);
@@ -72,15 +71,15 @@ class PatientController extends Controller
      * Display the specified resource.
      */
     public function show(string $id)
-{
-    // Retrieve the patient
-    $patient = Patient::findOrFail($id);
+    {
+        // Retrieve the patient
+        $patient = Patient::findOrFail($id);
 
-    // Sort patient visits by visit date in descending order
-    $sortedRecords = $patient->patientVisits()->orderBy('created_at', 'desc')->get();
+        // Sort patient visits by visit date in descending order
+        $sortedRecords = $patient->patientVisits()->orderBy('created_at', 'desc')->get();
 
-    return view('patients.show', compact('patient', 'sortedRecords'));
-}
+        return view('patients.show', compact('patient', 'sortedRecords'));
+    }
 
     /**
      * Show the form for editing the specified resource.
