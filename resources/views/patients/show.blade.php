@@ -76,6 +76,14 @@
 
         <form action="{{ route('patient-visit.store') }}" method="POST">
             @csrf
+            <input type="hidden" class="form-control" id="id" name="id" value="{{$patient->id}}">
+            <div class="mb-3">
+                <label for="visit_date" class="form-label">Visit Date</label>
+                <input type="date" class="form-control" id="visit_date" name="visit_date">
+            </div>
+            <div class="mb-3">
+                <label for="purpose" class="form-label">Purpose</label>
+                <input type="text" class="form-control" id="purpose" name="purpose" required>
             <input type="hidden" class="form-control" id="id" name="id" value="{{ $patient->id }}">
             <div class="row pt-2">
                 <div class="col-4">
