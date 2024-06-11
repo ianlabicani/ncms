@@ -74,25 +74,29 @@
 
         <!--  -->
 
-        <form action="{{ route('patient-visit.store') }}" method="POST">
-            @csrf
-            <input type="hidden" class="form-control" id="id" name="id" value="{{$patient->id}}">
-            <div class="mb-3">
-                <label for="visit_date" class="form-label">Visit Date <small class="text-muted">(Visiting today?
-                        Leave blank)</small></label>
-                <input type="date" class="form-control" id="visit_date" name="visit_date">
-            </div>
-            <div class="col-6">
+        <div class="card px-3 py-2 mt-4">
+            <form action="{{ route('patient-visit.store') }}" method="POST">
+                <h1 class="mb-2">Add new record</h1>
+                @csrf
+                <input type="hidden" class="form-control" id="id" name="id" value="{{$patient->id}}">
                 <div class="mb-3">
-                    <label for="purpose" class="form-label">Purpose <small class="text-muted">(Purpose of going
-                            clinic)</small></label>
-                    <input type="text" class="form-control" id="purpose" name="purpose" required>
+                    <label for="visit_date" class="form-label">Visit Date <small class="text-muted">(Visiting today?
+                            Leave blank)</small></label>
+                    <input type="date" class="form-control" id="visit_date" name="visit_date">
                 </div>
-            </div>
-            <div class="col-2 pt-2">
-                <button type="submit" class="btn btn-primary mb-2 mt-4">Add Record</button>
-            </div>
-        </form>
+                <div class="col-6">
+                    <div class="mb-2">
+                        <label for="purpose" class="form-label">Purpose <small class="text-muted">(Purpose of going
+                                clinic)</small></label>
+                        <input type="text" class="form-control" id="purpose" name="purpose" required>
+                    </div>
+                </div>
+                <div class="col-2">
+                    <button type="submit" class="btn btn-primary mb-2 mt-4">Add Record</button>
+                </div>
+            </form>
+        </div>
+
         {{-- <hr class="mt-0"> --}}
         <div class="pt-2">
             <div style="height: 300px; overflow-y: auto;">
