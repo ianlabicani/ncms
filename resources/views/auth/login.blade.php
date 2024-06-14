@@ -43,7 +43,6 @@
                     <div class="col-md-6">
                         <a href="#"
                             class="login-logo d-flex align-items-start justify-content-start text-decoration-none mb-3">
-                            {{-- <img src="{{ url('Image/logo.png') }}" height="60" alt="Mendoza Logo" /><br> --}}
                             <span class="text-start" style="font-weight: 900; letter-spacing: 2px;">
                                 <b class="text-danger text-shadow font">NORTHERN</b><br>
                                 <b class="text-danger text-shadow font">HEALTHCARE</b><br>
@@ -52,11 +51,13 @@
                             </span>
                         </a>
                     </div>
-                    <div class="col-md-6 mt-3">
+                    <div class="col-md-6 mt-2">
                         <div class="">
                             <div class="">
-                                <div class="bg-primary rounded-1 py-0">
-                                    <p class="text-center font-text" style="font-weight: 500;">Welcome to NHCC</p>
+                                <div class="rounded-1 py-0">
+                                    <p class="text-center font-text fs-5" style="font-weight: 500;">"Welcome to <b
+                                            class="text-danger">NHCC"</b>
+                                    </p>
                                 </div>
                                 <hr class="mt-0">
                                 <form action ="{{ route('login') }}" method="post">

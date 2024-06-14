@@ -56,8 +56,10 @@
                     <div class="col-md-6 mt-3">
                         <div class="">
                             <div class="">
-                                <div class="bg-primary rounded-1 py-0">
-                                    <p class="text-center font-text" style="font-weight: 500;">Welcome to NHCC</p>
+                                <div class="rounded-1 py-0">
+                                    <p class="text-center font-text fs-5" style="font-weight: 500;">"Register to <b
+                                            class="text-danger">NHCC"</b>
+                                    </p>
                                 </div>
                                 <hr class="mt-0">
                                 <form action="{{ route('register') }}" method="post">
