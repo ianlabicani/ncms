@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'Northern',
+    'title' => 'Northern Healthcare Childrens Clinic',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -68,7 +68,7 @@ return [
     'logo_img_class' => 'brand-image img-circle rounded-5',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
-    'logo_img_alt' => 'Admin Logo',
+    'logo_img_alt' => 'NHCC Logo',
 
     /*
     |--------------------------------------------------------------------------
@@ -196,7 +196,7 @@ return [
     'classes_content_wrapper' => '',
     'classes_content_header' => '',
     'classes_content' => '',
-    'classes_sidebar' => 'sidebar-light-danger elevation-2',
+    'classes_sidebar' => 'sidebar-light-secondary elevation-2',
     'classes_sidebar_nav' => '',
     'classes_topnav' => 'navbar-white navbar-light',
     'classes_topnav_nav' => 'navbar-expand',
