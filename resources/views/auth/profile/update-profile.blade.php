@@ -12,9 +12,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     {{-- Google Fonts --}}
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
+    <link
+        href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
-    {{-- Alert  --}}
     {{-- Alert  --}}
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
@@ -24,6 +24,10 @@
 
         .color {
             color: #039e43;
+        }
+
+        .font {
+            font-family: 'Poppins';
         }
 
         .colored-toast.swal2-icon-success {
@@ -61,7 +65,8 @@
 @stop
 
 @section('content_header')
-    <h1 class="fw-semibold mb-2 color">Update Profile</h1>
+    <h5 class="fw-semibold font">Update Profile</h5>
+    <hr class="mt-0">
     @if (session('success'))
         <script>
             const Toast = Swal.mixin({
@@ -78,7 +83,7 @@
             (async () => {
                 await Toast.fire({
                     icon: 'success',
-                    title: 'User updated successfully!'
+                    title: 'Profile updated successfully!'
                 })
             })()
         </script>
@@ -89,7 +94,41 @@
 
     <body>
         <div class="container-fluid">
-            <div class="row">
+            <form action="{{ route('profile.update', $user) }}" method="POST">
+                @csrf
+                @method('PUT')
+                <div class="row">
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" name="name" id="name" class="form-control"
+                                value="{{ old('name', $user->name) }}" required>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" name="email" id="email" class="form-control"
+                                value="{{ old('email', $user->email) }}" required>
+                        </div>
+                    </div>
+                </div>
+                <hr class="mt-0">
+                <div class="row">
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="current_password">Enter Password</label>
+                            <input type="password" name="current_password" id="current_password" class="form-control"
+                                required>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk me-1"></i> Update
+                    Profile</button>
+            </form>
+        </div>
+        {{-- <div class="container-fluid">
+            <div class="row"> 
                 <div class="col-6">
                     <div class="card">
                         <div class="card-header bg-success">Edit Profile</div>
@@ -132,7 +171,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
 
     </body>
 @stop
