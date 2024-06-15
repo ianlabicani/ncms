@@ -28,6 +28,13 @@
         .text-shadow {
             text-shadow: 3px 3px 5px rgba(63, 63, 63, 0.6);
         }
+
+        .login-logo .font {
+            font-weight: 900;
+            letter-spacing: 2px;
+            font-size: clamp(2.6rem, 2.5vw, 2.6rem);
+            /* Responsive font size */
+        }
     </style>
     @yield('css')
 @stop
@@ -38,7 +45,7 @@
         <div class="d-flex align-items-center justify-content-center" style="min-height: 95vh;">
             <div class="card rounded-4 shadow-lg p-5" style="width: 850px;">
                 <div class="row py-3">
-                    <div class="col-md-6">
+                    <div class="col-md-6 pt-4">
                         <a href="#"
                             class="login-logo d-flex align-items-start justify-content-start text-decoration-none mb-3">
                             {{-- <img src="{{ url('Image/logo.png') }}" height="60" alt="Mendoza Logo" /><br> --}}
@@ -66,10 +73,6 @@
                                         <input type="email" name="email"
                                             class="form-control @error('email') is-invalid @enderror" placeholder="Email"
                                             value="{{ old('email') }}" required autofocus>
-                                        <div class="input-group-append">
-                                            <div class="input-group-text">
-                                            </div>
-                                        </div>
                                         @error('email')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>

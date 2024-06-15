@@ -30,6 +30,11 @@
         .text-shadow {
             text-shadow: 3px 3px 5px rgba(63, 63, 63, 0.6);
         }
+        .login-logo .font {
+            font-weight: 900;
+            letter-spacing: 2px;
+            font-size: clamp(2.6rem, 2.5vw, 2.6rem); /* Responsive font size */
+        }
     </style>
 @stop
 
@@ -40,10 +45,9 @@
         <div class="d-flex align-items-center justify-content-center" style="min-height: 95vh;">
             <div class="card rounded-4 shadow-lg p-5" style="width: 850px;">
                 <div class="row py-3">
-                    <div class="col-md-6">
-                        <a href="#"
-                            class="login-logo d-flex align-items-start justify-content-start text-decoration-none mb-3">
-                            <span class="text-start" style="font-weight: 900; letter-spacing: 2px;">
+                    <div class="col-md-6 pt-4">
+                        <a href="#" class="login-logo d-flex align-items-start justify-content-start text-decoration-none mb-3">
+                            <span class="text-start">
                                 <b class="text-danger text-shadow font">NORTHERN</b><br>
                                 <b class="text-danger text-shadow font">HEALTHCARE</b><br>
                                 <b class="text-danger text-shadow font">CHILDREN'S</b><br>
@@ -98,9 +102,9 @@
                                         <div class="col-6">
                                             <p class="mb-1">
                                                 <a href="{{ route('password.request') }}"
-                                                    class="text-danger text-decoration-none" style="font-weight: 500;">I
-                                                    forgot
-                                                    my password</a>
+                                                    class="text-danger text-decoration-none fs-6 " style="font-weight: 500;">
+                                                    I forgot my password
+                                                </a>
                                             </p>
                                         </div>
                                     </div>
