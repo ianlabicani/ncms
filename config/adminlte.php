@@ -334,6 +334,10 @@ return [
             'text' => 'change_password',
             'url' => 'profile/change-password',
             'icon' => 'fas fa-fw fa-lock',
+        ],[
+            'text' => 'Activity Log',
+            'url' => '/Activity-logs',
+            'icon' => 'fas fa-fw fa-list',
         ],
 
         ['header' => 'NAVIGATION'],
