@@ -174,14 +174,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-12">
-                                        <div class="form-group">
-                                            <label for="purpose">Purpose</label>
-                                            <input type="text" name="purpose" id="purpose" value="{{$patient->purpose}}" class="form-control" placeholder="Enter purpose" required>
-                                        </div>
-                                    </div>
-                                </div>
+
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-primary px-5">Update</button>
                                     <a href="{{ url('/patients') }}" class="btn btn-danger text-decoration-none">Back</a>
