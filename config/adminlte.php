@@ -310,6 +310,7 @@ return [
             'type' => 'sidebar-menu-search',
             'text' => 'Search',
         ],
+        ['header' => 'NAVIGATION'],
         [
             'text' => 'Dashboard',
             'url' => '/dashboard',
@@ -317,30 +318,6 @@ return [
             'label' => '',
             'label_color' => '',
         ],
-        // [
-        //     'text' => 'pages',
-        //     'url' => 'admin/pages',
-        //     'icon' => 'far fa-fw fa-file',
-        //     'label' => 4,
-        //     'label_color' => 'success',
-        // ],
-        ['header' => 'ACCOUNT SETTING'],
-        [
-            'text' => 'profile',
-            'url' => '/profile',
-            'icon' => 'fas fa-fw fa-user',
-        ],
-        [
-            'text' => 'change_password',
-            'url' => 'profile/change-password',
-            'icon' => 'fas fa-fw fa-lock',
-        ],[
-            'text' => 'Activity Log',
-            'url' => '/Activity-logs',
-            'icon' => 'fas fa-fw fa-list',
-        ],
-
-        ['header' => 'NAVIGATION'],
         [
             'text' => 'Patients',
             'icon' => 'fa-solid fa-users',
@@ -361,6 +338,24 @@ return [
                 ],
             ],
         ],
+        [
+            'text' => 'Activity Log',
+            'url' => '/Activity-logs',
+            'icon' => 'fas fa-fw fa-list',
+        ],
+
+        ['header' => 'ACCOUNT SETTING'],
+        [
+            'text' => 'profile',
+            'url' => '/profile',
+            'icon' => 'fas fa-fw fa-user',
+        ],
+        [
+            'text' => 'change_password',
+            'url' => 'profile/change-password',
+            'icon' => 'fas fa-fw fa-lock',
+        ],
+
     ],
 
     /*
@@ -475,6 +470,21 @@ return [
                     'type' => 'css',
                     'asset' => false,
                     'location' => '//cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css',
+                ],
+            ],
+        ],
+        'Bootstrap' => [
+            'active' => true,
+            'files' => [
+                [
+                    'type' => 'css',
+                    'asset' => false,
+                    'location' => 'https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css',
+                ],
+                [
+                    'type' => 'js',
+                    'asset' => false,
+                    'location' => 'https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js',
                 ],
             ],
         ],

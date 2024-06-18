@@ -12,7 +12,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     {{-- Google Fonts --}}
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
+    <link
+        href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
     {{-- Alert  --}}
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -23,6 +24,10 @@
 
         .color {
             color: #039e43;
+        }
+
+        .font {
+            font-family: 'Poppins';
         }
 
         .colored-toast.swal2-icon-success {
@@ -60,48 +65,50 @@
 @stop
 
 @section('content_header')
-    <h4 class="fw-semibold color">Activity Log</h4>
+    <h5 class="fw-semibold font">Activity Log</h5>
+    <hr class="mt-0">
 @stop
 
 @section('content')
-<div class="table-responsive">
     <div class="table-responsive">
-        <table class="table table-bordered table-hover">
-            <thead class="text-center">
-                <tr class="font-weight-bold">
-                    <th>ID</th>
-                    <th>Event</th>
-                    <th>Subject-ID</th>
-                    <th style="width: 30%;">Patient Name</th>
-                    <th>Date</th>
-                </tr>
-            </thead>
-            <tbody class="text-center">
-                @foreach ($data as $log)
-                    <tr>
-                        <td>{{ $log->id }}</td>
-                        <td>
-                            @if ($log->event == 'created')
-                                Add Patient
-                            @else
-                                {{ $log->event }}
-                            @endif
-                        </td>
-                        <td>{{ $log->subject_id }}</td>
-                        <td>
-                            @if (isset($log->properties['attributes']['first_name']) && isset($log->properties['attributes']['last_name']))
-                                {{ $log->properties['attributes']['first_name'] }} {{ $log->properties['attributes']['last_name'] }}
-                            @else
-                                N/A
-                            @endif
-                        </td>
-                        <td>{{ $log->created_at }}</td>
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover">
+                <thead class="text-center table-secondary">
+                    <tr class="font-weight-bold">
+                        <th>ID</th>
+                        <th>Event</th>
+                        <th>Subject-ID</th>
+                        <th style="width: 30%;">Patient Name</th>
+                        <th>Date</th>
                     </tr>
-                @endforeach
-            </tbody>
-        </table>
+                </thead>
+                <tbody class="text-center">
+                    @foreach ($data as $log)
+                        <tr>
+                            <td>{{ $log->id }}</td>
+                            <td>
+                                @if ($log->event == 'created')
+                                    Add Patient
+                                @else
+                                    {{ $log->event }}
+                                @endif
+                            </td>
+                            <td>{{ $log->subject_id }}</td>
+                            <td>
+                                @if (isset($log->properties['attributes']['first_name']) && isset($log->properties['attributes']['last_name']))
+                                    {{ $log->properties['attributes']['first_name'] }}
+                                    {{ $log->properties['attributes']['last_name'] }}
+                                @else
+                                    N/A
+                                @endif
+                            </td>
+                            <td>{{ $log->created_at }}</td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
     </div>
-</div>
 
 @stop
 
